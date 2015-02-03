@@ -27,9 +27,16 @@ describe Allpay::Client do
   end
 
   it '#query_trade_info' do
-    result_hash = @client.query_trade_info MerchantTradeNo: '0457ce27', TimeStamp: Time.now.to_i
+    result_hash = @client.query_trade_info '0457ce27'
     expect(result_hash.keys).to match_array %w[HandlingCharge ItemName MerchantID MerchantTradeNo
       PaymentDate PaymentType PaymentTypeChargeFee TradeAmt TradeDate TradeNo TradeStatus CheckMacValue]
+  end
+
+  it '#query_period_credit_card_trade_info' do
+    result_hash = @client.query_period_credit_card_trade_info '0457ce27'
+    expect(result_hash.keys).to match_array %w[MerchantID MerchantTradeNo TradeNo RtnCode PeriodType
+      Frequency ExecTimes PeriodAmount amount gwsr process_date auth_code card4no
+      card6no TotalSuccessTimes TotalSuccessAmount ExecLog]
   end
 
   it '#make_mac' do 

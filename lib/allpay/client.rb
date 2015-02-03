@@ -1,4 +1,5 @@
 require 'net/http'
+require 'json'
 
 module Allpay
   class Client
@@ -33,9 +34,19 @@ module Allpay
       Net::HTTP.post_form api_url, params
     end
 
-    def query_trade_info **params
-      res = request '/Cashier/QueryTradeInfo', params
+    def query_trade_info trade_number, platform = nil
+      res = request '/Cashier/QueryTradeInfo',
+              MerchantTradeNo: trade_number,
+              TimeStamp: Time.now.to_i,
+              PlatformID: platform
       Hash[res.body.split('&').map!{|i| i.split('=')}]
+    end
+
+    def query_period_credit_card_trade_info trade_number
+      res = request '/Cashier/QueryPeriodCreditCardTradeInfo',
+              MerchantTradeNo: trade_number,
+              TimeStamp: Time.now.to_i
+      JSON.parse(res.body)
     end
   end
 end
