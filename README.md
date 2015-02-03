@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/tonytonyjan/allpay.svg?branch=master)](https://travis-ci.org/tonytonyjan/allpay)
+
 # Allpay 歐付寶
 
 這是歐付寶 API 的 Ruby 包裝，更多資訊參考他們的[官方文件](https://www.allpay.com.tw/Content/files/%E5%85%A8%E6%96%B9%E4%BD%8D%E9%87%91%E6%B5%81%E4%BB%8B%E6%8E%A5%E6%8A%80%E8%A1%93%E6%96%87%E4%BB%B6.pdf)。
