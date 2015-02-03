@@ -8,7 +8,11 @@ module Allpay
 
     attr_accessor :merchant_id, :hash_key, :hash_iv, :mode
 
-    def initialize(merchant_id:, hash_key:, hash_iv:, mode: :production)
+    def initialize params = {}
+      merchant_id = params[:merchant_id]
+      hash_key = params[:hash_key]
+      hash_iv = params[:hash_iv]
+      mode = params[:mode]
       @merchant_id, @hash_key, @hash_iv, @mode = merchant_id, hash_key, hash_iv, mode
     end
 
@@ -20,14 +24,14 @@ module Allpay
       end
     end
 
-    def make_mac **params
+    def make_mac params = {}
       raw = params.sort.map!{|k,v| "#{k}=#{v}"}.join('&')
       padded = "HashKey=#{@hash_key}&#{raw}&HashIV=#{@hash_iv}"
       url_encoded = CGI.escape(padded).downcase!
       Digest::MD5.hexdigest(url_encoded).upcase!
     end
 
-    def request path, **params
+    def request path, params = {}
       params[:MerchantID] = @merchant_id
       params[:CheckMacValue] = make_mac(params)
       api_url = URI.join(api_host, path)
