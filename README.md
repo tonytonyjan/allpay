@@ -43,3 +43,12 @@ client.request '/Cashier/QueryTradeInfo',
 `make_mac(**params)`                                         | `String`            | 用於產生 `CheckMacValue`，單純做加密，`params` 需要完整包含到 `MerchantID`
 `query_trade_info(merchant_trade_number, platform = nil)`    | `Hash`              | `/Cashier/QueryTradeInfo` 的捷徑方法，將 `TimeStamp` 設定為當前時間
 `query_period_credit_card_trade_info(merchant_trade_number)` | `Hash`              | `/Cashier/QueryPeriodCreditCardTradeInfo` 的捷徑方法，將 `TimeStamp` 設定為當前時間
+
+## 使用範例
+
+```bash
+git clone git@github.com:tonytonyjan/allpay.git
+cd allpay
+bundle install
+ruby examples/server.rb
+```
