@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'allpay/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "allpay"
+  spec.name          = "allpay_client"
   spec.version       = Allpay::VERSION
   spec.authors       = ["Jian Weihang"]
   spec.email         = ["tonytonyjan@gmail.com"]
