@@ -1,11 +1,49 @@
 require 'spec_helper'
-
-describe Allpay do
-  it 'has a version number' do
-    expect(Allpay::VERSION).not_to be nil
+require 'securerandom'
+describe Allpay::Client do
+  before :all do
+    @client = Allpay::Client.new(merchant_id: '2000132', hash_key: '5294y06JbISpM5x9', hash_iv: 'v77hoKGq4kWxNNIS', mode: :test)
   end
 
-  it 'does something useful' do
-    expect(false).to eq(true)
+  it '#api /Cashier/AioCheckOut' do
+    res = @client.request '/Cashier/AioCheckOut',
+      MerchantTradeNo: SecureRandom.hex(4),
+      MerchantTradeDate: Time.now.strftime('%Y/%m/%d %H:%M:%S'),
+      PaymentType: 'aio',
+      TotalAmount: 100,
+      TradeDesc: '腦袋有動工作室',
+      ItemName: '物品一#物品二',
+      ReturnURL: 'http://requestb.in/11zuej31',
+      ClientBackURL: 'http://requestb.in/11zuej31?inspect',
+      ChoosePayment: 'Credit'
+    expect(res.code).to eq '302'
+  end
+
+  it '#api /Cashier/QueryTradeInfo' do
+    res = @client.request '/Cashier/QueryTradeInfo',
+      MerchantTradeNo: '0457ce27',
+      TimeStamp: Time.now.to_i
+    expect(res.code).to eq '200'
+  end
+
+  it '#query_trade_info' do
+    result_hash = @client.query_trade_info MerchantTradeNo: '0457ce27', TimeStamp: Time.now.to_i
+    expect(result_hash.keys).to match_array %w[HandlingCharge ItemName MerchantID MerchantTradeNo
+      PaymentDate PaymentType PaymentTypeChargeFee TradeAmt TradeDate TradeNo TradeStatus CheckMacValue]
+  end
+
+  it '#make_mac' do 
+    client = Allpay::Client.new(merchant_id: '12345678', hash_key: 'xdfaefasdfasdfa32d', hash_iv: 'sdfxfafaeafwexfe')
+    mac = client.make_mac({
+      ItemName: 'sdfasdfa',
+      MerchantID: '12345678',
+      MerchantTradeDate: '2013/03/12 15:30:23',
+      MerchantTradeNo: 'allpay_1234',
+      PaymentType: 'allpay',
+      ReturnURL: 'http:sdfasdfa',
+      TotalAmount: '500',
+      TradeDesc: 'dafsdfaff'
+    })
+    expect(mac).to eq '40D9A6C00A4A78A300ED458237071BDA'
   end
 end

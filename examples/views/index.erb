@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+  <form action="http://payment-stage.allpay.com.tw/Cashier/AioCheckOut" method="post">
+    <input type="text" name="MerchantID" value="<%= @params[:MerchantID] %>">
+    <input type="text" name="MerchantTradeNo" value="<%= @params[:MerchantTradeNo] %>">
+    <input type="text" name="MerchantTradeDate" value="<%= @params[:MerchantTradeDate] %>">
+    <input type="text" name="PaymentType" value="<%= @params[:PaymentType] %>">
+    <input type="text" name="TotalAmount" value="<%= @params[:TotalAmount] %>">
+    <input type="text" name="TradeDesc" value="<%= @params[:TradeDesc] %>">
+    <input type="text" name="ItemName" value="<%= @params[:ItemName] %>">
+    <input type="text" name="ReturnURL" value="<%= @params[:ReturnURL] %>">
+    <input type="text" name="ClientBackURL" value="<%= @params[:ClientBackURL] %>">
+    <input type="text" name="ChoosePayment" value="<%= @params[:ChoosePayment] %>">
+    <input type="text" name="CheckMacValue" value="<%= @mac %>">
+    <input type="submit">
+  </form>
+</body>
+</html>
