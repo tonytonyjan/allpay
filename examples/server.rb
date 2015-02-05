@@ -10,12 +10,17 @@ get '/' do
     MerchantTradeNo: SecureRandom.hex(4),
     MerchantTradeDate: Time.now.strftime('%Y/%m/%d %H:%M:%S'),
     PaymentType: 'aio',
-    TotalAmount: 100,
+    TotalAmount: 1000,
     TradeDesc: '腦袋有動工作室',
     ItemName: '物品一#物品二',
     ReturnURL: 'http://requestb.in/11zuej31',
     ClientBackURL: 'http://requestb.in/11zuej31?inspect',
-    ChoosePayment: 'Credit'
+    ChoosePayment: 'Credit',
+    PeriodAmount: 1000,
+    PeriodType: 'D',
+    Frequency: 1,
+    ExecTimes: 12,
+    PeriodReturnURL: 'http://requestb.in/158bu8e1'
   }
   @mac = client.make_mac(@params)
   erb :index
