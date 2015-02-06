@@ -39,10 +39,13 @@ module Allpay
     end
 
     def query_trade_info merchant_trade_number, platform = nil
-      res = request '/Cashier/QueryTradeInfo',
-              MerchantTradeNo: merchant_trade_number,
-              TimeStamp: Time.now.to_i,
-              PlatformID: platform
+      params = {
+        MerchantTradeNo: merchant_trade_number,
+        TimeStamp: Time.now.to_i,
+        PlatformID: platform
+      }
+      params.delete_if{ |k, v| v.empty? }
+      res = request '/Cashier/QueryTradeInfo', params
       Hash[res.body.split('&').map!{|i| i.split('=')}]
     end
 
