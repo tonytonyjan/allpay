@@ -44,7 +44,7 @@ module Allpay
         TimeStamp: Time.now.to_i,
         PlatformID: platform
       }
-      params.delete_if{ |k, v| v.empty? }
+      params.delete_if{ |k, v| v.nil? }
       res = request '/Cashier/QueryTradeInfo', params
       Hash[res.body.split('&').map!{|i| i.split('=')}]
     end
