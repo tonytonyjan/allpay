@@ -32,7 +32,7 @@ module Allpay
     end
 
     def verify_mac params = {}
-      check_mac_value = params[:CheckMacValue]
+      check_mac_value = params[:CheckMacValue] || params['CheckMacValue']
       make_mac(params.reject{ |k,v| [:CheckMacValue, 'CheckMacValue'].include? k }) == check_mac_value
     end
 
