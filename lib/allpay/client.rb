@@ -31,6 +31,11 @@ module Allpay
       Digest::MD5.hexdigest(url_encoded).upcase!
     end
 
+    def verify_mac params = {}
+      check_mac_value = params.delete(:CheckMacValue)
+      make_mac(params) == check_mac_value
+    end
+
     def request path, params = {}
       params[:MerchantID] = @merchant_id
       params[:CheckMacValue] = make_mac(params)

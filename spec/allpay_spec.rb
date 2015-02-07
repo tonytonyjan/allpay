@@ -54,4 +54,20 @@ describe Allpay::Client do
     })
     expect(mac).to eq '40D9A6C00A4A78A300ED458237071BDA'
   end
+
+  it '#verify_mac' do
+    result = @client.verify_mac RtnCode: '1',
+      PaymentType: 'Credit_CreditCard',
+      TradeAmt: '700',
+      PaymentTypeChargeFee: '14',
+      PaymentDate: '2015/02/07 14:21:00',
+      SimulatePaid: '0',
+      CheckMacValue: '3AF270CCCFA58CA0349F4FD462E21643',
+      TradeDate: '2015/02/07 14:20:47',
+      MerchantID: '2000132',
+      TradeNo: '1502071420478656',
+      RtnMsg: '交易成功',
+      MerchantTradeNo: '355313'
+    expect(result).to eq true
+  end
 end
