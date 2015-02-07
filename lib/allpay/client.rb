@@ -32,8 +32,8 @@ module Allpay
     end
 
     def verify_mac params = {}
-      check_mac_value = params.delete(:CheckMacValue)
-      make_mac(params) == check_mac_value
+      check_mac_value = params[:CheckMacValue]
+      make_mac(params.reject{|k,v| k == :CheckMacValue }) == check_mac_value
     end
 
     def request path, params = {}
