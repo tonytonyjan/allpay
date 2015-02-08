@@ -4,13 +4,13 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'allpay/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "allpay_client"
+  spec.name          = 'allpay_client'
   spec.version       = Allpay::VERSION
-  spec.authors       = ["Jian Weihang"]
-  spec.email         = ["tonytonyjan@gmail.com"]
-  spec.summary       = %q{API client for allpay}
-  spec.description   = %q{API client for allpay}
-  # spec.homepage      = ""
+  spec.authors       = ['Jian Weihang']
+  spec.email         = ['tonytonyjan@gmail.com']
+  spec.summary       = '歐付寶（Allpay）API 包裝'
+  spec.description   = '歐付寶（Allpay）API 包裝'
+  spec.homepage      = "https://github.com/tonytonyjan/allpay"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
