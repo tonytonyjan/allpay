@@ -3,7 +3,7 @@ require 'spec_helper'
 require 'securerandom'
 describe Allpay::Client do
   before :all do
-    @client = Allpay::Client.new(merchant_id: '2000132', hash_key: '5294y06JbISpM5x9', hash_iv: 'v77hoKGq4kWxNNIS', mode: :test)
+    @client = Allpay::Client.new(mode: :test)
   end
 
   it '#api /Cashier/AioCheckOut' do
@@ -41,7 +41,7 @@ describe Allpay::Client do
   end
 
   it '#make_mac' do 
-    client = Allpay::Client.new(merchant_id: '12345678', hash_key: 'xdfaefasdfasdfa32d', hash_iv: 'sdfxfafaeafwexfe')
+    client = Allpay::Client.new(merchant_id: '12345678', hash_key: 'xdfaefasdfasdfa32d', hash_iv: 'sdfxfafaeafwexfe', mode: :test)
     mac = client.make_mac({
       ItemName: 'sdfasdfa',
       MerchantID: '12345678',
@@ -68,22 +68,6 @@ describe Allpay::Client do
       TradeNo: '1502071420478656',
       RtnMsg: '交易成功',
       MerchantTradeNo: '355313'
-    expect(result).to eq true
-  end
-
-  it '#verify_mac with string hash' do
-    result = @client.verify_mac 'RtnCode' => '1',
-      'PaymentType' => 'Credit_CreditCard',
-      'TradeAmt' => '700',
-      'PaymentTypeChargeFee' => '14',
-      'PaymentDate' => '2015/02/07 14:21:00',
-      'SimulatePaid' => '0',
-      'CheckMacValue' => '3AF270CCCFA58CA0349F4FD462E21643',
-      'TradeDate' => '2015/02/07 14:20:47',
-      'MerchantID' => '2000132',
-      'TradeNo' => '1502071420478656',
-      'RtnMsg' => '交易成功',
-      'MerchantTradeNo' => '355313'
     expect(result).to eq true
   end
 end

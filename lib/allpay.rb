@@ -1,5 +1,5 @@
-require "allpay/version"
-require "allpay/client"
+require 'allpay/version'
+require 'allpay/client'
 
 module Allpay
 end

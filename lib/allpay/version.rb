@@ -1,3 +1,3 @@
 module Allpay
-  VERSION = "1.0.9"
+  VERSION = "2.0.0"
 end

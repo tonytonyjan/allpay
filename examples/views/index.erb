@@ -6,23 +6,9 @@
 </head>
 <body>
   <form action="http://payment-stage.allpay.com.tw/Cashier/AioCheckOut" method="post">
-    <input type="text" name="MerchantID" value="<%= @params[:MerchantID] %>">
-    <input type="text" name="MerchantTradeNo" value="<%= @params[:MerchantTradeNo] %>">
-    <input type="text" name="MerchantTradeDate" value="<%= @params[:MerchantTradeDate] %>">
-    <input type="text" name="PaymentType" value="<%= @params[:PaymentType] %>">
-    <input type="text" name="TotalAmount" value="<%= @params[:TotalAmount] %>">
-    <input type="text" name="TradeDesc" value="<%= @params[:TradeDesc] %>">
-    <input type="text" name="ItemName" value="<%= @params[:ItemName] %>">
-    <input type="text" name="ReturnURL" value="<%= @params[:ReturnURL] %>">
-    <input type="text" name="ClientBackURL" value="<%= @params[:ClientBackURL] %>">
-    <input type="text" name="ChoosePayment" value="<%= @params[:ChoosePayment] %>">
-    <input type="text" name="PeriodAmount" value="<%= @params[:PeriodAmount] %>">
-    <input type="text" name="PeriodType" value="<%= @params[:PeriodType] %>">
-    <input type="text" name="Frequency" value="<%= @params[:Frequency] %>">
-    <input type="text" name="ExecTimes" value="<%= @params[:ExecTimes] %>">
-    <input type="text" name="PeriodReturnURL" value="<%= @params[:PeriodReturnURL] %>">
-
-    <input type="text" name="CheckMacValue" value="<%= @mac %>">
+    <% @params.each do |k, v| %>
+      <input type="text" name="<%= k %>" value="<%= v %>">
+    <% end %>
     <input type="submit">
   </form>
 </body>
