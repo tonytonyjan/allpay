@@ -40,7 +40,7 @@ describe Allpay::Client do
       card6no TotalSuccessTimes TotalSuccessAmount ExecLog]
   end
 
-  it '#make_mac' do 
+  it '#make_mac' do
     client = Allpay::Client.new(merchant_id: '12345678', hash_key: 'xdfaefasdfasdfa32d', hash_iv: 'sdfxfafaeafwexfe', mode: :test)
     mac = client.make_mac({
       ItemName: 'sdfasdfa',
@@ -68,6 +68,52 @@ describe Allpay::Client do
       TradeNo: '1502071420478656',
       RtnMsg: '交易成功',
       MerchantTradeNo: '355313'
+    expect(result).to eq true
+  end
+
+  it '#verify_mac with more parameters' do
+    result = @client.verify_mac AlipayID: nil,
+      AlipayTradeNo: nil,
+      amount: '1290',
+      ATMAccBank: nil,
+      ATMAccNo: nil,
+      auth_code: '777777',
+      card4no: '2222',
+      card6no: '431195',
+      eci: '0',
+      ExecTimes: nil,
+      Frequency: nil,
+      gwsr: '12303658',
+      MerchantID: '2000132',
+      MerchantTradeNo: 'R9710358221432568191',
+      PayFrom: nil,
+      PaymentDate: '2015/05/25 23:37:42',
+      PaymentNo: nil,
+      PaymentType: 'Credit_CreditCard',
+      PaymentTypeChargeFee: '26',
+      PeriodAmount: nil,
+      PeriodType: nil,
+      process_date: '2015/05/25 23:37:42',
+      red_dan: '0',
+      red_de_amt: '0',
+      red_ok_amt: '0',
+      red_yet: '0',
+      RtnCode: '1',
+      RtnMsg: '交易成功',
+      SimulatePaid: '0',
+      staed: '0',
+      stage: '0',
+      stast: '0',
+      TenpayTradeNo: nil,
+      TotalSuccessAmount: nil,
+      TotalSuccessTimes: nil,
+      TradeAmt: '1290',
+      TradeDate: '2015/05/25 23:37:13',
+      TradeNo: '1505252337131701',
+      WebATMAccBank: nil,
+      WebATMAccNo: nil,
+      WebATMBankName: nil,
+      CheckMacValue: 'B8C4C0524C6D0F8E6F855A072FE4A340'
     expect(result).to eq true
   end
 end
