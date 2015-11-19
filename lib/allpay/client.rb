@@ -92,7 +92,7 @@ module Allpay
 
     def option_required! *option_names
       option_names.each do |option_name|
-        raise MissingOption, %Q{option "#{option_name}" is required.} if @options[:option_name].nil?
+        raise MissingOption, %Q{option "#{option_name}" is required.} if @options[option_name].nil?
       end
     end
   end
