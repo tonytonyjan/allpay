@@ -40,7 +40,7 @@ test_client.request '/Cashier/QueryTradeInfo',
 每個 API 有哪些參數建議直接參考歐付寶文件，注意幾點：
 
 - 使用時不用煩惱 `MerchantID` 與 `CheckMacValue`，正如上述範例一樣。
-- `/Cashier/AioCheckOut` 回傳的內容是 HTML，這個請求應該是交給瀏覽器發送的，所以不應該寫出 `client.request '/Cashier/AioCheckOut'` 這樣的內容。
+- `/Cashier/AioCheckOut` 回傳的內容是 HTML，這個請求應該是交給瀏覽器發送的，所以不應該寫出 `client.request '/Cashier/AioCheckOut'` 這樣的程式碼。
 
 ## Allpay::Client
 
