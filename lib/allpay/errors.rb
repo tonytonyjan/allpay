@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module Allpay
   # Generic Allpay exception class.
   class AllpayError < StandardError; end
