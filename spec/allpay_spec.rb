@@ -1,6 +1,7 @@
 # encoding: utf-8
 require 'spec_helper'
 require 'securerandom'
+
 describe Allpay::Client do
   before :all do
     @client = Allpay::Client.new(mode: :test)
@@ -17,7 +18,8 @@ describe Allpay::Client do
       ReturnURL: 'http://requestb.in/11zuej31',
       ClientBackURL: 'http://requestb.in/11zuej31?inspect',
       ChoosePayment: 'Credit'
-    expect(res.code).to eq '302'
+    expect(res.code).to eq '200'
+    expect(res.body.force_encoding('UTF-8')).to include '物品一'
   end
 
   it '#api /Cashier/QueryTradeInfo' do
