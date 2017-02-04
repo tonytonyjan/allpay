@@ -48,7 +48,7 @@ test_client.request '/Cashier/QueryTradeInfo',
 ---                                                          | ---                 | ---
 `request(path, **params)`                                    | `Net::HTTPResponse` | 發送 API 請求
 `make_mac(**params)`                                         | `String`            | 用於產生 `CheckMacValue`，單純做加密，`params` 需要完整包含到 `MerchantID`
-`verify_mac(**params)`                                       | `Boolean`           | 會於檢查收到的參數，其檢查碼是否正確，這用在歐付寶物的 `ReturnURL` 與 `PeriodReturnURL` 參數上。
+`verify_mac(**params)`                                       | `Boolean`           | 用於檢查收到的參數，其檢查碼是否正確，這用在歐付寶物的 `ReturnURL` 與 `PeriodReturnURL` 參數上。
 `query_trade_info(merchant_trade_number, platform = nil)`    | `Hash`              | `/Cashier/QueryTradeInfo` 的捷徑方法，將 `TimeStamp` 設定為當前時間
 `query_period_credit_card_trade_info(merchant_trade_number)` | `Hash`              | `/Cashier/QueryPeriodCreditCardTradeInfo` 的捷徑方法，將 `TimeStamp` 設定為當前時間
 `generate_checkout_params`                                   | `Hash`              | 用於產生 `/Cashier/AioCheckOut` 表單需要的參數，`MerchantTradeDate`、`MerchantTradeNo`、`PaymentType`，可省略。
